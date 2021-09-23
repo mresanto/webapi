@@ -19,7 +19,6 @@ namespace webapi.DBConnection
         public void Initialize()
         {
             string connectionString;
-            connectionString = "Server=localhost;Database=pamosuapi;Uid=root;Pwd=Leoliveirafe32";
 
             connection = new MySqlConnection(connectionString);
 
@@ -55,7 +54,7 @@ namespace webapi.DBConnection
                 Post.descricao = (dataReader["descricao"] + "");
                 Post.visualizacoes = (dataReader["visualizacoes"] + "");
                 Post.data = (dataReader["data_post"] + "");
-                Post.postauthor = (dataReader["post_author"] + "");
+                Post.postauthor = (dataReader["user_id"] + "");
 
                 list.Add(Post);
             }
