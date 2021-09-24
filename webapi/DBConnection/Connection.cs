@@ -20,6 +20,8 @@ namespace webapi.DBConnection
         {
             string connectionString;
 
+            connectionString = "Server=localhost;Database=pamosuapi;Uid=root;Pwd=root";
+
             connection = new MySqlConnection(connectionString);
 
         }
@@ -135,6 +137,20 @@ namespace webapi.DBConnection
             dataReader.Close();
 
             return list;
+        }
+        public bool login(string data)
+        {
+            string[] LoginSenha = data.Split(";");
+            Initialize();
+            connection.Open();
+            MySqlCommand cmd = this.connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM user WHERE username = '" + LoginSenha[0] + "' && senha = '" + LoginSenha[1] + "'";
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+            if (dataReader.HasRows)
+                return true;
+            else
+                return false;
+
         }
     }
 }
